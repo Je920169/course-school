@@ -19,7 +19,7 @@ import com.example.demo.service.ChooseRecordsService;
 import com.example.demo.service.StudentsService;
 
 @Controller
-@RequestMapping("/chooseRecords")
+@RequestMapping("/index")
 public class ChooseRecordsController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class ChooseRecordsController {
     @Autowired
     private StudentsService studentsService;
 
-    @GetMapping
+    @GetMapping("/chooseRecords")
     public String chooseRecords(@ModelAttribute ChooseRecords chooseRecords, 
     							@ModelAttribute Courses courses,
     							@ModelAttribute Students students,
@@ -41,6 +41,27 @@ public class ChooseRecordsController {
         model.addAttribute("student", student);
     	return "chooseRecords";
     }
+    
+    @GetMapping
+    public String chooseRecords(@ModelAttribute Students students, Model model) {
+        List<Students> student = studentsService.findAllStudents();
+        model.addAttribute("student", student);
+    	return "index";
+    }
+    
+    @GetMapping("/courselist")
+    public String chooseRecords(@ModelAttribute Courses courses, Model model) {
+        List<Courses> course = chooseRecordsService.findAllCourses();    
+        model.addAttribute("course", course);
+    	return "courselist";
+    }
+    
+    
+    
+    
+    
+    
+    
     
 
     @GetMapping("/{id}")
