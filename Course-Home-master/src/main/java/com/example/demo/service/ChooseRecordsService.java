@@ -57,5 +57,9 @@ public class ChooseRecordsService {
 		return chooseRecordsDao.deleteCourses(id);
 	}
 	
+	public Courses findCoursesById(Integer id) {
+		return chooseRecordsDao.findCoursesById(id);
+	}
+	
 
 }

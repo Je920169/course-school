@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.dto.ChooseRecordsDto;
 import com.example.demo.model.po.ChooseRecords;
@@ -57,13 +59,19 @@ public class ChooseRecordsController {
     }
     
     
+   
+    
+    @GetMapping("/search")
+    public String getCoursesById(@RequestParam(name = "courseid", required = false) Integer courseId  , Model model) {
+    	Courses course = chooseRecordsService.findCoursesById(courseId);
+    	List<Courses> result = new ArrayList<>();
+    	result.add(course);
+        model.addAttribute("course", result);
+    	return "courselist";
+   }
     
     
     
-    
-    
-    
-
     @GetMapping("/{id}")
     public String getChooseRecordById(@PathVariable int id, Model model) {
         ChooseRecords chooseRecord = chooseRecordsService.getChooseRecordById(id);
@@ -84,7 +92,7 @@ public class ChooseRecordsController {
         return "redirect:/chooseRecords";
     }
 
-   @GetMapping("/delete/{id}")
+   @GetMapping("/chooseRecords/delete/{id}")
    public String deleteChooseRecord(@PathVariable int id) {
 	   chooseRecordsService.deleteChooseRecord(id);
       return "redirect:/chooseRecords";

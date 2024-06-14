@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.model.dto.ChooseRecordsDto;
 import com.example.demo.model.po.ChooseRecords;
+import com.example.demo.model.po.Courses;
 
 public interface ChooseRecordsDao extends CoursesDao {
     int addChooseRecord(ChooseRecords chooseRecord);
@@ -11,4 +12,5 @@ public interface ChooseRecordsDao extends CoursesDao {
     int deleteChooseRecord(Integer id);
     ChooseRecords getChooseRecordById(Integer id);
     List<ChooseRecordsDto> findAllChooseRecords();
+    Courses findCoursesById(Integer id);
 }

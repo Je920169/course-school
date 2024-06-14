@@ -138,5 +138,13 @@ public class ChooseRecordsDaoImpl implements ChooseRecordsDao {
 		};
 	    	return jdbcTemplate.query(sql, mapper);	
 	}
+
+
+
+	@Override
+	public Courses findCoursesById(Integer id) {
+		 String sql = "SELECT * FROM courses where id = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), id);
+	}
 	    		
 }

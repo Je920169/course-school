@@ -2,10 +2,8 @@ package com.example.demo.model.dto;
 
 import java.sql.Timestamp;
 
-import com.example.demo.model.po.ChooseRecords;
 import com.example.demo.model.po.Courses;
 import com.example.demo.model.po.Students;
-import com.example.demo.model.po.Teachers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
