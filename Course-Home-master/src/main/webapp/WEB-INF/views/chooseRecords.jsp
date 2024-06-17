@@ -43,7 +43,7 @@
                 <th>課程ID</th>
                 <th>學分數</th>
                 <th>選課時間</th>
-                <th>動作</th>
+                <th>狀態</th>
                 <th>操作時間</th>
                 <th>動作</th>
             </tr>
