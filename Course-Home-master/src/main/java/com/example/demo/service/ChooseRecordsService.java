@@ -61,5 +61,23 @@ public class ChooseRecordsService {
 		return chooseRecordsDao.findCoursesById(id);
 	}
 	
+	public Courses findCoursesBySubject(String subject) {
+		return chooseRecordsDao.findCoursesBySubject(subject);
+	}
 
+	public Courses findCoursesByTeacherId(Integer teacherId) {
+		return chooseRecordsDao.findCoursesByTeacherId(teacherId);
+	}
+	
+	public Courses findCoursesByCourseType(String courseType) {
+		return chooseRecordsDao.findCoursesByCourseType(courseType);
+	}
+	
+	public Courses findCoursesByCredits(Integer credits) {
+		return chooseRecordsDao.findCoursesByCredits(credits);
+	}
+	
+	public Courses findCoursesByTime(String time) {
+		return chooseRecordsDao.findCoursesByTime(time);
+	}
 }

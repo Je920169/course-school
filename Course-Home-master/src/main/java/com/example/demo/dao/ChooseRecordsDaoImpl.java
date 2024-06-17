@@ -146,5 +146,47 @@ public class ChooseRecordsDaoImpl implements ChooseRecordsDao {
 		 String sql = "SELECT * FROM courses where id = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), id);
 	}
+
+
+
+	@Override
+	public Courses findCoursesBySubject(String subject) {
+		String sql = "SELECT * FROM courses where subject = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), subject);
+	}
+
+
+
+	@Override
+	public Courses findCoursesByTeacherId(Integer teacherId) {
+		String sql = "SELECT * FROM courses where teacherId = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), teacherId);
+	}
+
+
+
+	@Override
+	public Courses findCoursesByCourseType(String courseType) {
+		String sql = "SELECT * FROM courses where courseType = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), courseType);
+	}
+
+
+
+	@Override
+	public Courses findCoursesByCredits(Integer credits) {
+		String sql = "SELECT * FROM courses where credits = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), credits);
+	}
+
+
+
+	@Override
+	public Courses findCoursesByTime(String time) {
+		String sql = "SELECT * FROM courses where time = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Courses.class), time);
+	}
 	    		
+	
+	
 }

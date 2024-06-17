@@ -11,6 +11,7 @@
     <link rel="stylesheet"  href="/css/courselist.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <title>學生選課系統</title>
 </head>
 <body>
@@ -28,22 +29,17 @@
     </nav>
 	
 	
-
-	
-		<!-- 待處理 -->
 		
-	<form class="pure-form" method="get" action="/index/search" >
+	<form class="pure-form mx-3" method="get" action="/index/search" >
 		<fieldset>
 		 <legend>查詢課程</legend>
-				課程序號: <input type="number" id="courseid" name="courseid" />
-					<!-- 
-				科目: <input type="text" id="subject" name="course.subject" />
-				教師姓名: <input type="text" id="subject" name="course.subject" /><p />
-				必/選修: <input type="text" id="subject" name="course.subject" />
-				上課地點: <input type="text" id="subject" name="course.subject" />
-				上課時間: <input type="text" id="subject" name="course.subject" /><p />
-					 -->
-					 <button type="submit" class="pure-button pure-button-primary">搜尋</button>
+				課程序號: <input class="my-2" type="number" id="courseid" name="courseid" />
+				科目: <input class="my-2" type="text" id="subject" name="subject" />
+				教師姓名: <input class="my-2" type="number" id="teacherid" name="teacherid" /><p />	
+				必/選修: <input class="my-2" type="text" id="coursetype" name="coursetype" />	
+				學分數:	<input class="my-2" type="number" id="credits" name="credits" />
+				上課時間: <input class="my-2" type="text" id="time" name="time" /><p />	
+			  <button type="submit" class="pure-button pure-button-primary">搜尋</button>
 		</fieldset>
 	</form>
 		
@@ -51,9 +47,9 @@
 		
 	
 	<h2 align="center">課程列表</h2>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
+ 
     
-    
+ 
     
     <table align="center" class="pure-table pure-table-bordered" border="1">
         <thead>
@@ -67,6 +63,7 @@
                 <th>人數上限</th>
                 <th>學分數</th>
                 <th>備註</th>
+                <th>動作</th>
             </tr>
         </thead>
         <tbody>
@@ -80,12 +77,14 @@
                     <td>${course.time}</td>
                     <td>${course.quota}</td>
                     <td>${course.credits}</td>
-                    <td>${course.remark}
-                
-                       
-                        <a class="button-success pure-button" href="${pageContext.request.contextPath}/chooseRecords/edit/${chooseRecord.id}">編輯</a>
-                        <a class="button-error pure-button" href="${pageContext.request.contextPath}/chooseRecords/delete/${chooseRecord.id}">刪除</a>
+                    <td>${course.remark}</td>
+                	
+                	<td>
+                        <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/chooseRecords/edit/${chooseRecord.id}">編輯</a>
+                        <a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/chooseRecords/delete/${chooseRecord.id}">刪除</a>
+                        <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/chooseRecords/delete/${chooseRecord.id}">加選</a>
                     </td>
+                    
                 </tr>
             </c:forEach>
         </tbody>

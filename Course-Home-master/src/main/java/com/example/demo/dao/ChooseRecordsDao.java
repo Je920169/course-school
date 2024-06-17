@@ -13,4 +13,9 @@ public interface ChooseRecordsDao extends CoursesDao {
     ChooseRecords getChooseRecordById(Integer id);
     List<ChooseRecordsDto> findAllChooseRecords();
     Courses findCoursesById(Integer id);
+    Courses findCoursesBySubject(String subject);
+    Courses findCoursesByTeacherId(Integer teacherId);
+    Courses findCoursesByCourseType(String courseType);
+    Courses findCoursesByCredits(Integer credits);
+    Courses findCoursesByTime(String time);
 }

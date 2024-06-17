@@ -62,15 +62,56 @@ public class ChooseRecordsController {
    
     
     @GetMapping("/search")
-    public String getCoursesById(@RequestParam(name = "courseid", required = false) Integer courseId  , Model model) {
-    	Courses course = chooseRecordsService.findCoursesById(courseId);
+    public String getCourses(@RequestParam(name = "courseid", required = false) Integer courseId,  
+    		 			  	 @RequestParam(name = "subject", required = false) String subject,							
+    		 			  	 @RequestParam(name = "teacherid", required = false) Integer teacherId,
+    		 			  	 @RequestParam(name = "coursetype", required = false) String courseType,
+    		 			  	 @RequestParam(name = "credits", required = false) Integer credits,
+    		 			  	 @RequestParam(name = "time", required = false) String time,
+    						 Model model) {
     	List<Courses> result = new ArrayList<>();
-    	result.add(course);
+    	
+    	 try {
+             if (courseId != null) {
+                 Courses course = chooseRecordsService.findCoursesById(courseId);
+                 if (course != null) {
+                     result.add(course);
+                 }
+             } else if (subject != null && !subject.isEmpty()) {
+                 Courses course = chooseRecordsService.findCoursesBySubject(subject);
+                 if (course != null) {
+                     result.add(course);
+                 }
+             } else if (teacherId != null) {
+                 Courses course = chooseRecordsService.findCoursesByTeacherId(teacherId);
+                 if (course != null) {
+                     result.add(course);
+                 }
+             } else if (courseType != null && !courseType.isEmpty()) {
+                 Courses course = chooseRecordsService.findCoursesByCourseType(courseType);
+                 if (course != null) {
+                     result.add(course);
+                 }
+             } else if (credits != null) {
+                 Courses course = chooseRecordsService.findCoursesByCredits(credits);
+                 if (course != null) {
+                     result.add(course);
+                 }
+             } else if (time != null && !time.isEmpty()) {
+                 Courses course = chooseRecordsService.findCoursesByTime(time);
+                 if (course != null) {
+                     result.add(course);
+                 }
+             }
+         } catch (Exception e) {
+             model.addAttribute("errorMessage", "查詢課程時出現錯誤：" + e.getMessage());
+         }
+    	
         model.addAttribute("course", result);
     	return "courselist";
    }
     
-    
+
     
     @GetMapping("/{id}")
     public String getChooseRecordById(@PathVariable int id, Model model) {
