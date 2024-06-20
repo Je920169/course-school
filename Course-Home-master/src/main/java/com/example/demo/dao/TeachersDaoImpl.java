@@ -17,14 +17,14 @@ public class TeachersDaoImpl implements TeachersDao {
 
 	@Override
 	public int addTeacher(Teachers teacher) {
-		  String sql = "INSERT INTO teachers (name, email, password) VALUES (?, ?, ?)";
+		  String sql = "INSERT INTO teachers (id, name, email, password) VALUES (?, ?, ?, ?)";
 	      return jdbcTemplate.update(sql, teacher.getName(), teacher.getEmail(), teacher.getPassword());
 	    }
 
 	@Override
 	public int updateTeacher(Integer id, Teachers teacher) {
 		  String sql = "UPDATE teachers SET name = ?, email = ?, password = ? WHERE id = ?";
-	      return jdbcTemplate.update(sql, teacher.getName(), teacher.getEmail(), teacher.getPassword(), id);
+	      return jdbcTemplate.update(sql, teacher.getId(), teacher.getName(), teacher.getEmail(), teacher.getPassword(), id);
 	    }
 
 	@Override
@@ -44,7 +44,16 @@ public class TeachersDaoImpl implements TeachersDao {
 		  String sql = "SELECT * FROM teachers";
 	      return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Teachers.class));
 	    }
-    
-    
-    
+
+	@Override
+	public Teachers findTeacherByEmail(String email) {
+		  String sql = "SELECT * FROM teachers WHERE email = ?";
+	        try {
+	            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Teachers.class), email);
+	        } catch (Exception e) {
+	            return null;
+	        }
+	}
+
+	
 }

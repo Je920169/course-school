@@ -10,4 +10,5 @@ public interface StudentsDao {
     int deleteStudent(Integer id);
     Students getStudentById(Integer id);
     List<Students> findAllStudents();
+    Students findStudentByEmail(String email);
 }

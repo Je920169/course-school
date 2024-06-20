@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -114,28 +115,49 @@ public class ChooseRecordsController {
 
     
     @GetMapping("/{id}")
-    public String getChooseRecordById(@PathVariable int id, Model model) {
+    public String getChooseRecordById(@PathVariable("id") Integer id, Model model) {
         ChooseRecords chooseRecord = chooseRecordsService.getChooseRecordById(id);
         model.addAttribute("chooseRecord", chooseRecord);
        return "chooseRecords";
    }
 
-    @GetMapping("/new")
-    public String newChooseRecordForm(Model model) {
-        model.addAttribute("chooseRecord", new ChooseRecords());
-        return "chooseRecords";
+
+    
+    @PostMapping("/chooseRecords/add")
+    public String addChooseRecord(@ModelAttribute ChooseRecords chooseRecord) {
+ 	   chooseRecordsService.addChooseRecord(chooseRecord);
+        return "redirect:/courselist";
     }
 
     
-    @PostMapping
-    public String addChooseRecord(@ModelAttribute ChooseRecords chooseRecord) {
- 	   chooseRecordsService.addChooseRecord(chooseRecord);
-        return "redirect:/chooseRecords";
+    @PostMapping("/courselist/add")
+    public String addCourses(@ModelAttribute Courses courses, Model model) {
+ 	   chooseRecordsService.addCourses(courses.getId(), courses.getSubject(), courses.getTeacherId(), courses.getCourseType(), courses.getPlace(), courses.getTime(), courses.getQuota(), courses.getCredits(), courses.getRemark());
+ 	  List<Courses> course = chooseRecordsService.findAllCourses(); 
+      model.addAttribute("course", course);
+        return "courselist";
     }
-
-   @GetMapping("/chooseRecords/delete/{id}")
-   public String deleteChooseRecord(@PathVariable int id) {
-	   chooseRecordsService.deleteChooseRecord(id);
-      return "redirect:/chooseRecords";
+    
+    
+    @DeleteMapping("/chooseRecords/delete/{id}")
+    public String deleteChooseRecord(@PathVariable("id") Integer id, Model model) {
+    	chooseRecordsService.deleteChooseRecord(id);
+    	List<ChooseRecordsDto> chooseRecordsDtos = chooseRecordsService.findAllChooseRecords();
+        model.addAttribute("chooseRecordsDtos", chooseRecordsDtos);
+        return "chooseRecords";
     }
+    
+    
+    @DeleteMapping("/courselist/delete/{id}")
+    public String deleteCourses(@PathVariable("id") Integer id, Model model) {
+    	chooseRecordsService.deleteCourses(id);
+    	 List<Courses> course = chooseRecordsService.findAllCourses(); 
+        model.addAttribute("course", course);
+        return "courselist";
+    }
+    
+    
+    
+    
+    
 }

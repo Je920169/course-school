@@ -35,8 +35,8 @@ public class ChooseRecordsDaoImpl implements ChooseRecordsDao {
 	
 	@Override
 	public int addCourses(Courses courses) {
-		  String sql = "INSERT INTO courses (subject, teacher_id, course_type, place, time, quota, credits, remark) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	        return jdbcTemplate.update(sql, courses.getSubject(), courses.getTeacherId(), courses.getCourseType(), courses.getPlace(), courses.getTime(), courses.getQuota(), courses.getCredits(), courses.getRemark());
+		  String sql = "INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	        return jdbcTemplate.update(sql, courses.getId(), courses.getSubject(), courses.getTeacherId(), courses.getCourseType(), courses.getPlace(), courses.getTime(), courses.getQuota(), courses.getCredits(), courses.getRemark());
 	}
 
 

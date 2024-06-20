@@ -21,5 +21,5 @@
         <a href="${pageContext.request.contextPath}/index/courselist"  class="active">課程列表</a>
         <a href="${pageContext.request.contextPath}/index/chooseRecords"  class="active">已選課程</a>
         <a href="${pageContext.request.contextPath}/index/curriculum" class="active">課表</a>
-        <a href="${pageContext.request.contextPath}/index/signout" class="active">登出</a>
+        <a href="${pageContext.request.contextPath}/auth/logout" class="active">登出</a>
     </nav>

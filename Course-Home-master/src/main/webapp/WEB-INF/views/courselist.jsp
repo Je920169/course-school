@@ -25,14 +25,16 @@
         <a href="${pageContext.request.contextPath}/index/courselist"  class="active">課程列表</a>
         <a href="${pageContext.request.contextPath}/index/chooseRecords"  class="active">已選課程</a>
         <a href="${pageContext.request.contextPath}/index/curriculum" class="active">課表</a>
-        <a href="${pageContext.request.contextPath}/index/signout" class="active">登出</a>
+        <a href="${pageContext.request.contextPath}/auth/logout" class="active">登出</a>
     </nav>
 	
-	
+	<div class="welcome my-3 text-center">
+    	<h1 class="mt-4">查詢課程</h1>
+		<p>Welcome, ${user.name}!</p>
+	</div>
 		
-	<form class="pure-form mx-3" method="get" action="/index/search" >
+	<form class="pure-form mx-3 text-center" method="get" action="/index/search" >
 		<fieldset>
-		 <legend>查詢課程</legend>
 				課程序號: <input class="my-2" type="number" id="courseid" name="courseid" />
 				科目: <input class="my-2" type="text" id="subject" name="subject" />
 				教師姓名: <input class="my-2" type="number" id="teacherid" name="teacherid" /><p />	
@@ -46,8 +48,26 @@
 		
 		
 	
-	<h2 align="center">課程列表</h2>
- 
+	<h2 align="center" class="my-3">課程列表</h2>
+ 	
+ 	
+    
+    		<form class="pure-form mx-3" method="post" action="${pageContext.request.contextPath}/index/courselist/add" >
+				<fieldset>
+					<legend>新增新增課程</legend>
+						課程序號: <input class="my-2" type="number" id="id" name="id" required="required" />
+						科目名稱: <input class="my-2" type="text" id="subject" name="subject" required="required" />
+						教師ID: <input class="my-2" type="number" id="teacherId" name="teacherId" required="required" /><p />
+						必/選修: <input class="my-2" type="text" id="courseType" name="courseType" required="required" />
+						上課地點: <input class="my-2" type="text" id="place" name="place" required="required" />
+						上課時間: <input class="my-2" type="text" id="time" name="time" required="required" /><p />
+						人數上限: <input class="my-2" type="number" id="quota" name="quota" required="quota" />
+						學分數: <input class="my-2" type="number" id="credits" name="credits" required="required" />
+						備註: <input class="my-2" type="text" id="remark" name="remark" required="required" /><p />
+						<button type="submit" class="pure-button pure-button-primary">送出</button>
+				</fieldset>
+			</form>
+    
     
  
     
@@ -80,9 +100,12 @@
                     <td>${course.remark}</td>
                 	
                 	<td>
-                        <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/chooseRecords/edit/${chooseRecord.id}">編輯</a>
-                        <a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/chooseRecords/delete/${chooseRecord.id}">刪除</a>
-                        <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/chooseRecords/delete/${chooseRecord.id}">加選</a>
+                	   	<form action="${pageContext.request.contextPath}/index/courselist/delete/${course.id}" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="btn btn-outline-danger">刪除課程</button>
+                        </form>
+                      
+                        <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/index/courselist/${course.id}">加選</a>
                     </td>
                     
                 </tr>

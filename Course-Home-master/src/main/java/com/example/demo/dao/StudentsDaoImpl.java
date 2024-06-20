@@ -17,8 +17,8 @@ public class StudentsDaoImpl implements StudentsDao {
 
 	@Override
 	public int addStudent(Students student) {
-		String sql = "INSERT INTO students (name, email, password, grade, major) VALUES (?, ?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, student.getName(), student.getEmail(), student.getPassword(), student.getGrade(), student.getMajor());
+		String sql = "INSERT INTO students (id, name, email, password, grade, major) VALUES (?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(sql, student.getId(), student.getName(), student.getEmail(), student.getPassword(), student.getGrade(), student.getMajor());
     }
 
 	@Override
@@ -44,5 +44,15 @@ public class StudentsDaoImpl implements StudentsDao {
 		 String sql = "SELECT * FROM students";
 	        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Students.class));
 	    }
+
+	@Override
+	public Students findStudentByEmail(String email) {
+		 String sql = "SELECT * FROM students WHERE email = ?";
+	        try {
+	            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Students.class), email);
+	        } catch (Exception e) {
+	            return null;
+	        }
+	}
     
 }

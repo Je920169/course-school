@@ -69,7 +69,7 @@ INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, cre
 INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (4, 'Basic Cooking', 4, 'Non-Major', 'Room 104', '(四)05-06', 25, 2, 'Elective course for all majors');
 INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (5, 'Advanced Physics', 5, 'Major', 'Room 105', '(五)03-04', 35, 2, 'Required for Physics majors');
 INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (6, 'Organic Chemistry', 6, 'Major', 'Room 106', '(一)06-08', 30, 3, 'Required for Chemistry majors');
-
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (7, 'Java', 2, '必修', 'Room 107', '(三)06-08', 35, 3, 'Required for Information Management majors');
 
 
 INSERT INTO choose_records (id, studentid, courseid, credits, choosetime, action) VALUES (1, 1, 1, 2, '2024-01-15 08:00:00', 'Enroll');

@@ -10,4 +10,5 @@ public interface TeachersDao {
     int deleteTeacher(Integer id);
     Teachers getTeacherById(Integer id);
     List<Teachers> findAllTeachers();
+    Teachers findTeacherByEmail(String email);
 }

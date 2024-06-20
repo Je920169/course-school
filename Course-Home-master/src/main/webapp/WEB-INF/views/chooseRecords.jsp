@@ -21,19 +21,17 @@
         <a href="${pageContext.request.contextPath}/index/courselist"  class="active">課程列表</a>
         <a href="${pageContext.request.contextPath}/index/chooseRecords"  class="active">已選課程</a>
         <a href="${pageContext.request.contextPath}/index/curriculum" class="active">課表</a>
-        <a href="${pageContext.request.contextPath}/index/signout" class="active">登出</a>
+        <a href="${pageContext.request.contextPath}/auth/logout" class="active">登出</a>
     </nav>
 
+	<div class="welcome my-3 text-center">
+    	<h1 class="mt-4">選課紀錄列表</h1>
+		<p>Welcome, ${user.name}!</p>
+	</div>
 
 
-
-    <h2 align="center" class="mt-4">選課紀錄列表</h2>
    
-    
-    <!-- 
-    <a href="${pageContext.request.contextPath}/chooseRecords/new">新增選課紀錄</a>
-     -->
-   
+ 
     
     <table align="center" class="pure-table pure-table-bordered" border="1">
         <thead>
@@ -67,7 +65,10 @@
         			</td>
                         
                      <td>   
-                        <a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/chooseRecords/delete/${chooseRecord.id}">退選</a>
+                         <form action="${pageContext.request.contextPath}/index/chooseRecords/delete/${chooseRecord.id}" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="btn btn-outline-danger">退選</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet"  href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +21,24 @@
         <a href="${pageContext.request.contextPath}/index/courselist"  class="active">課程列表</a>
         <a href="${pageContext.request.contextPath}/index/chooseRecords"  class="active">已選課程</a>
         <a href="${pageContext.request.contextPath}/index/curriculum" class="active">課表</a>
-        <a href="${pageContext.request.contextPath}/index/signout" class="active">登出</a>
+        <a href="${pageContext.request.contextPath}/auth/logout" class="active">登出</a>
     </nav>
 	
+	<div class="welcome my-3 text-center">
+		<h1>個人資訊</h1>
+		<p>Welcome, ${user.name}!</p>
+	</div>
 	
-	<h1 align="center">個人資訊</h1>
-	
+	<!--  
+	 <div align="right" class="welcome mx-5">
+		<c:choose >
+	       <c:when test="${not empty user}">
+	             <p>Welcome, ${user.name}!</p>
+	       </c:when>      
+	    </c:choose>
+	</div>
+	-->
+
 	
 	<table align="center" class="pure-table pure-table-bordered" border="1">
         <thead>
