@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS students (
     id INT PRIMARY KEY,
     name VARCHAR(45),
     email VARCHAR(60),
-    password VARCHAR(45),
+    password VARCHAR(200),
+    salt VARCHAR(200),
 	grade VARCHAR(45),
     major VARCHAR(45)
 );
@@ -19,7 +20,8 @@ CREATE TABLE IF NOT EXISTS teachers (
     id INT PRIMARY KEY,
     name VARCHAR(45),
 	email VARCHAR(60),
-    password VARCHAR(45)
+    password VARCHAR(200),
+    salt VARCHAR(200)
 );
 
 CREATE TABLE IF NOT EXISTS courses (
@@ -63,13 +65,13 @@ INSERT INTO teachers (id, name, email, password) VALUES (6, 'Dr. Green', 'green@
 
 
 
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (1, 'Introduction to Computer Science', 1, 'Major', 'Room 101', '(二)03-04', 40, 2, 'Required for CS majors');
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (2, 'Calculus I', 2, 'Major', 'Room 102', '(三)01-03', 30, 3, 'Required for Math majors');
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (3, 'Introduction to Art', 3, 'Non-Major', 'Room 103', '(一)05-06', 20, 2, 'Elective course for all majors');
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (4, 'Basic Cooking', 4, 'Non-Major', 'Room 104', '(四)05-06', 25, 2, 'Elective course for all majors');
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (5, 'Advanced Physics', 5, 'Major', 'Room 105', '(五)03-04', 35, 2, 'Required for Physics majors');
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (6, 'Organic Chemistry', 6, 'Major', 'Room 106', '(一)06-08', 30, 3, 'Required for Chemistry majors');
-INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (7, 'Java', 2, '必修', 'Room 107', '(三)06-08', 35, 3, 'Required for Information Management majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (1, 'Introduction to Computer Science', 1, '必修', 'Room 101', 'Tuesday 3-4', 40, 2, 'Required for CS majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (2, 'Calculus I', 2, '必修', 'Room 102', 'Wednesday 1-3', 30, 3, 'Required for Math majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (3, 'Introduction to Art', 3, '選修', 'Room 103', 'Monday 5-6', 20, 2, 'Elective course for all majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (4, 'Basic Cooking', 4, '選修', 'Room 104', 'Thursday 5-6', 25, 2, 'Elective course for all majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (5, 'Advanced Physics', 5, '必修', 'Room 105', 'Friday 3-4', 35, 2, 'Required for Physics majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (6, 'Organic Chemistry', 6, '必修', 'Room 106', 'Monday 6-8', 30, 3, 'Required for Chemistry majors');
+INSERT INTO courses (id, subject, teacherid, coursetype, place, time, quota, credits, remark) VALUES (7, 'Java', 2, '必修', 'Room 107', 'Wednesday 6-8', 35, 3, 'Required for Information Management majors');
 
 
 INSERT INTO choose_records (id, studentid, courseid, credits, choosetime, action) VALUES (1, 1, 1, 2, '2024-01-15 08:00:00', 'Enroll');

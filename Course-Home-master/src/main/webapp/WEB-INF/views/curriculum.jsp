@@ -23,3 +23,57 @@
         <a href="${pageContext.request.contextPath}/index/curriculum" class="active">課表</a>
         <a href="${pageContext.request.contextPath}/auth/logout" class="active">登出</a>
     </nav>
+
+    <div class="welcome my-3 text-center">
+    	<h1 class="mt-4">課表</h1>
+		<p>Welcome, ${user.name}!</p>
+	</div>
+
+
+
+		<div class="container-xl">
+			<div class="row">
+
+			        <div class="table-container">
+			            <table class="table table-bordered table-striped">
+			                <thead>
+			                    <tr>
+			                        <th>節次/星期</th>
+			                        <th>星期一</th>
+			                        <th>星期二</th>
+			                        <th>星期三</th>
+			                        <th>星期四</th>
+			                        <th>星期五</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <c:forEach var="period" begin="1" end="12">
+			                        <tr>
+			                            <th scope="row">第${period}節</th>
+			                            <c:forEach var="day" items="${['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}">
+			                                <td>
+			                                    <c:choose>
+			                                        <c:when test="${not empty timetable[day][period]}">
+			                                            ${timetable[day][period].subject} <br>
+			                                            ${timetable[day][period].teacherId} <br>
+			                                            ${timetable[day][period].place}
+			                                        </c:when>
+			                                        <c:otherwise>
+			                                            -
+			                                        </c:otherwise>
+			                                    </c:choose>
+			                                </td>
+			                            </c:forEach>
+			                        </tr>
+			                    </c:forEach>
+			                </tbody>
+			            </table>
+			        </div>
+	        </div> 
+   		</div>      
+			        
+			        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
