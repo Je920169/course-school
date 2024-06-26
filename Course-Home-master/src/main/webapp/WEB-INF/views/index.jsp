@@ -29,65 +29,63 @@
 		<p>Welcome, ${user.name}!</p>
 	</div>
 	
-	<!--  
-	 <div align="right" class="welcome mx-5">
-		<c:choose >
-	       <c:when test="${not empty user}">
-	             <p>Welcome, ${user.name}!</p>
-	       </c:when>      
-	    </c:choose>
-	</div>
-	-->
 
 	
 	<table align="center" class="pure-table pure-table-bordered" border="1">
         <thead>
             <tr>
-                <th>學號</th>
-                <th>學生姓名</th>
-                <th>年級</th>
-                <th>科系</th>
+             	<c:if test="${userType == 'student'}">
+	                <th>學號</th>
+	                <th>學生姓名</th>
+	                <th>年級</th>
+	                <th>科系</th>
+                </c:if>
+                <c:if test="${userType == 'teacher'}">
+	                <th>教職編號</th>
+	                <th>老師姓名</th>
+                </c:if>
+                
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="student" items="${ student }">
                 <tr>
-                    <td>${student.id}</td>
-                    <td>${student.name}</td>
-                    <td>${student.grade}</td>
-                    <td>${student.major}</td>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                 <c:if test="${userType == 'student'}">
+                    <td>${user.grade}</td>
+                    <td>${user.major}</td>
+                </c:if>
                   	
                     </td>
-                </tr>
-            </c:forEach>
+                </tr> 
         </tbody>
     </table>
 	
 	<h2 align="center" class="mt-3">公告</h2>
-	
-	<table align="center" class="pure-table pure-table-bordered" border="1">
-	 <tbody>
-	  <tr>
-	  	<th>選課階段</th>
-	  	<th>系統開放時間</th>
-	  	<th>系統結束時間</th>
-	  </tr>
-	  
-	  <tr>
-		  <th>初選第一階段</th>
-		  <th>2024/07/01 上午09:00</th>
-		  <th>2024/07/10 上午09:00</th>
-	  </tr>
-	  
-	  <tr>
-	  	  <th>初選第二階段</th>
-		  <th>2024/07/11 上午09:00</th>
-		  <th>2024/07/20 上午09:00</th>
-	  </tr>
-	  
-	 </tbody>
-	</table>
-	
+	<div class="container-xl">
+		<table align="center" class="table table-sm" border="1" style="width: 600px;">
+		 <tbody>
+		  <tr>
+		  	<th>選課階段</th>
+		  	<th>系統開放時間</th>
+		  	<th>系統結束時間</th>
+		  </tr>
+		  
+		  <tr>
+			  <th>初選第一階段</th>
+			  <th>2024/07/01 上午09:00</th>
+			  <th>2024/07/10 上午09:00</th>
+		  </tr>
+		  
+		  <tr>
+		  	  <th>初選第二階段</th>
+			  <th>2024/07/11 上午09:00</th>
+			  <th>2024/07/20 上午09:00</th>
+		  </tr>
+		  
+		 </tbody>
+		</table>
+	</div>
 
 </body>
 </html>

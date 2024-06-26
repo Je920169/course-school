@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.po.Students;
 import com.example.demo.model.po.Teachers;
 import com.example.demo.service.AuthService;
+import com.example.demo.service.ChooseRecordsService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,6 +22,9 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
+    
+    @Autowired
+    private ChooseRecordsService chooseRecordsService;
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
@@ -30,16 +34,19 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute("user") Students student, HttpServletRequest request, Model model) {
-        Students foundStudent = authService.findStudentByEmail(student.getEmail());
+    	 
+    	HttpSession session = request.getSession();
+    	
+    	Students foundStudent = authService.findStudentByEmail(student.getEmail());
         if (foundStudent != null && foundStudent.getPassword().equals(student.getPassword())) {
-            HttpSession session = request.getSession();
+        	session.setAttribute("userType", "student");
             session.setAttribute("user", foundStudent);
             return "redirect:/index"; 
         }
 
         Teachers foundTeacher = authService.findTeacherByEmail(student.getEmail());
         if (foundTeacher != null && foundTeacher.getPassword().equals(student.getPassword())) {
-            HttpSession session = request.getSession();
+        	session.setAttribute("userType", "teacher"); 
             session.setAttribute("user", foundTeacher);
             return "redirect:/index"; 
         }
@@ -54,4 +61,6 @@ public class AuthController {
         session.invalidate(); 
         return "redirect:/auth/login"; 
     }
+    
+
 }

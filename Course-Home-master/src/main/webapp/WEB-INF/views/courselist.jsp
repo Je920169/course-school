@@ -51,10 +51,10 @@
 	<h2 align="center" class="my-3">課程列表</h2>
  	
  	
-    
+    <c:if test="${userType == 'teacher'}">
     		<form class="pure-form mx-3" method="post" action="${pageContext.request.contextPath}/index/courselist/add" >
 				<fieldset>
-					<legend>新增新增課程</legend>
+					<legend>新增課程</legend>
 						課程序號: <input class="my-2" type="number" id="id" name="id" required="required" />
 						科目名稱: <input class="my-2" type="text" id="subject" name="subject" required="required" />
 						教師ID: <input class="my-2" type="number" id="teacherId" name="teacherId" required="required" /><p />
@@ -67,7 +67,7 @@
 						<button type="submit" class="pure-button pure-button-primary">送出</button>
 				</fieldset>
 			</form>
-    
+    </c:if>
     
  
     
@@ -100,12 +100,22 @@
                     <td>${course.remark}</td>
                 	
                 	<td>
+                	<c:if test="${userType == 'teacher'}">
                 	   	<form action="${pageContext.request.contextPath}/index/courselist/delete/${course.id}" method="POST" style="display:inline;">
                             <input type="hidden" name="_method" value="delete"/>
                             <button type="submit" class="btn btn-outline-danger">刪除課程</button>
                         </form>
-                      
-                        <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/index/courselist/${course.id}">加選</a>
+                    </c:if>   
+                    
+                    <c:if test="${userType == 'student'}">
+                       <form action="${pageContext.request.contextPath}/index/chooseRecords/add" method="POST" style="display:inline;">
+                            <input type="hidden" name="studentid" value="${user.id}">
+                            <input type="hidden" name="courseid" value="${course.id}">
+                            <input type="hidden" name="credits" value="${course.credits}">
+                            <input type="hidden" name="action" value="Enroll">
+                            <button type="submit" class="btn btn-outline-primary">加選</button>
+                        </form>
+                     </c:if>     
                     </td>
                     
                 </tr>

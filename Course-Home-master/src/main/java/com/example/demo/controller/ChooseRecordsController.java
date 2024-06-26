@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,7 +38,9 @@ public class ChooseRecordsController {
     
     @Autowired
     private TeachersService teachersService;
-
+    
+    
+    
     @GetMapping("/chooseRecords")
     public String chooseRecords(@ModelAttribute ChooseRecords chooseRecords, 
     							@ModelAttribute Courses courses,
@@ -51,6 +54,8 @@ public class ChooseRecordsController {
         model.addAttribute("student", student);
     	return "chooseRecords";
     }
+   
+    
     
     @GetMapping
     public String chooseRecords(@ModelAttribute Students students, Model model) {
@@ -131,9 +136,12 @@ public class ChooseRecordsController {
 
     
     @PostMapping("/chooseRecords/add")
-    public String addChooseRecord(@ModelAttribute ChooseRecords chooseRecord) {
- 	   chooseRecordsService.addChooseRecord(chooseRecord);
-        return "redirect:/courselist";
+    public String addChooseRecord(@ModelAttribute ChooseRecords chooseRecord, Model model) {
+        chooseRecord.setChoosetime(new Timestamp(System.currentTimeMillis()));
+        chooseRecordsService.addChooseRecord(chooseRecord);
+        List<Courses> course = chooseRecordsService.findAllCourses();
+        model.addAttribute("course", course);
+        return "courselist";
     }
 
     

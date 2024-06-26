@@ -42,7 +42,6 @@
                 <th>學分數</th>
                 <th>選課時間</th>
                 <th>狀態</th>
-                <th>操作時間</th>
                 <th>動作</th>
             </tr>
         </thead>
@@ -55,21 +54,12 @@
                     <td>${chooseRecord.credits}</td>
                   	<td>${chooseRecord.choosetime}</td>
                     <td>${chooseRecord.action}</td>
-                    <td>
-                    	<span class="date-text" data-chooseRecord-id="${ chooseRecord.id }">
-                    	${ chooseRecord.choosetime }
-                    	</span>
-                    	<input class="date-input" type="date"
-                    		   data-chooseRecord-id="${ chooseRecord.id }"
-                    		   value="${chooseRecord.choosetime}" style="display: none;" />
-        			</td>
-                        
-                     <td>   
+                    <td>   
                          <form action="${pageContext.request.contextPath}/index/chooseRecords/delete/${chooseRecord.id}" method="POST" style="display:inline;">
                             <input type="hidden" name="_method" value="delete"/>
                             <button type="submit" class="btn btn-outline-danger">退選</button>
                         </form>
-                    </td>
+                   </td>
                 </tr>
             </c:forEach>
         </tbody>
